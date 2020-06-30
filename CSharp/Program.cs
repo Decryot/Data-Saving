@@ -7,17 +7,20 @@ namespace CsharpDataSaving
         string pathToFolder = Directory.GetCurrentDirectory();
         string folderName = "DATA";
 
+        string dataFolderName = "data.txt";
+
         public FileCreator() {
+            // CREATING DATA FOLDER / FILE
             if (!Directory.Exists(pathToFolder + "/" + folderName)) {
                 Directory.CreateDirectory(pathToFolder + "/" + folderName);
             }
 
-            if (!Directory.Exists(pathToFolder + "/" + folderName + "/data.txt")) {
+            if (!Directory.Exists(pathToFolder + "/" + folderName + "/" + dataFolderName)) {
 
                 try { 
-                    TextWriter writer = new StreamWriter(pathToFolder+"/"+folderName+"/data.txt", true);
+                    TextWriter writer = new StreamWriter(pathToFolder+"/"+folderName+"/"+dataFolderName, true);
 
-                    writer.Write("10");
+                    writer.Write("");
                     writer.Flush();
                     writer.Close();
                 }
@@ -25,6 +28,17 @@ namespace CsharpDataSaving
             }
         }
 
+        // SAVING DATA
+        public void saveData(int dataToSave)
+        {
+            TextWriter writer = new StreamWriter(pathToFolder + "/" + folderName + "/" + dataFolderName, true);
+
+            writer.Write(dataToSave.ToString());
+            writer.Flush();
+            writer.Close();
+        }
+
+        // LOADING DATA
         public int getData() {
 
             int loadedData = 0;
@@ -44,6 +58,7 @@ namespace CsharpDataSaving
         public static void Main(string[] args) {
 
             fileCreator = new FileCreator();
+            fileCreator.saveData(100);
             data = fileCreator.getData();
             Console.Write(data);
         }
