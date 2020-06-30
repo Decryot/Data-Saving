@@ -5,7 +5,7 @@ namespace CsharpDataSaving
 {
     class FileCreator {
         
-        // the data.txt file will be parented in the bin/debug/DATA folder
+        // the data.txt file will be parented in the bin/Debug/DATA folder
         string pathToFolder = Directory.GetCurrentDirectory();
         string folderName = "DATA";
 
