@@ -1,17 +1,24 @@
-loaded_data = ""
+def load_data():
+    loaded_data = []
+    try:
+        file = open("data.txt","r")
+        for line in file:
+            loaded_data.append(line)
+    except:
+        print("file doesn't exist - def load_data")
+        return None
 
-def load_data(file_name):
-    file = open(file_name,"r")
-    content  = file.readlines()
-    
-    for line in content:
-        if not line == None:
-            return line
-    
-    return None
+    return loaded_data
 
-def on_start():
-    loaded_data = load_data("data.txt")
-    print(loaded_data)
+def save_data(data):
+    try:
+        file = open("data.txt", "w+")
+        file.write(str(data))
+    except:
+        print("file doesn't exist - def save_data")
 
-on_start()
+save_data(100)
+data = load_data()
+
+for dat in data:
+    print(dat)
